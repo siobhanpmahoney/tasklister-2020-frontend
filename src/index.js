@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 // import * as Actions from './actions'
 
 import './index.css';
+import ContextProvider from './context/ContextProvider'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -24,10 +25,12 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   // <Provider store={store}>
   // <Provider>
+  <ContextProvider>
     <Router>
       <App />
-    </Router>,
-  // </Provider>,
+    </Router>
+
+</ContextProvider>,
   document.getElementById('root')
 );
 
