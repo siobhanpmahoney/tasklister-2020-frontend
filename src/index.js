@@ -25,12 +25,15 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   // <Provider store={store}>
   // <Provider>
+      <Router>
   <ContextProvider>
-    <Router>
-      <App />
-    </Router>
 
-</ContextProvider>,
+      <App />
+
+
+</ContextProvider>
+
+      </Router>,
   document.getElementById('root')
 );
 

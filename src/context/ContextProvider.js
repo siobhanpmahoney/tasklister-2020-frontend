@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import AppContext from ".";
 
 const ContextProvider = ({ children }) => {
-  const [example, setExample] = useState('Hello there')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const context = {
-    setExample,
-    example
+  const loginState = {
+    setIsLoggedIn,
+    isLoggedIn
   }
 
   return (
-    <AppContext.Provider value = {context}>
+    <AppContext.Provider value = {loginState}>
       { children }
     </AppContext.Provider>
   )

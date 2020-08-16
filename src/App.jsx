@@ -12,20 +12,18 @@ function App() {
 
   // begin Context tutorial code
 
-  const { example, setExample } = useContext(AppContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
   const [formText, setFormText] = useState('');
 
   useEffect(() => {
-    console.log("example here: ", example)
-  }, [example])
+    console.log("loginState here: ", isLoggedIn)
+  }, [isLoggedIn])
 
-  const handleChange = (e) => {
-    setFormText(e.target.value)
-  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setExample(formText)
+    setIsLoggedIn(!isLoggedIn)
   }
 
 
@@ -50,15 +48,20 @@ function App() {
 
 
           <h3>BEGIN tutorial</h3>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="example">Example: </label>
-            <input
-              type='text'
-              value={formText}
-              onChange={handleChange}
-              />
-            <button>DO IT</button>
-          </form>
+
+        <h4> Current State: {!!isLoggedIn ? (
+          'Logged IN'
+        ) : (
+          'Logged OUT!'
+        )} {!!isLoggedIn.toString()}</h4>
+          <button onClick={handleSubmit}>
+          {!!isLoggedIn ? (
+            'Logout'
+          ) : (
+            'Login!'
+          )}
+        </button>
+
           <h3>END TUTORIAL</h3>
         </div>
       );
