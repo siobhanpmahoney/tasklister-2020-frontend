@@ -3,27 +3,27 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
-import AppContext from './context'
+import AppContext from './context';
 
 import Home from "./components/Home"
 import Login from "./components/Login"
 
-function App() {
+const App = () => {
 
-  // begin Context tutorial code
+  const { authenticated, setAuthenticated } = useContext(AppContext)
 
-  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
+
   const [formText, setFormText] = useState('');
 
   useEffect(() => {
-    console.log("loginState here: ", isLoggedIn)
-  }, [isLoggedIn])
+    console.log("loginState here: ", authenticated)
+  }, [authenticated])
 
 
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setIsLoggedIn(!isLoggedIn)
+    setAuthenticated(!authenticated)
   }
 
 
@@ -38,33 +38,34 @@ function App() {
       <Switch>
         <Route exact path='/login' render={(routerProps) => {
             return <Login history={routerProps.history} />
-          }} />
+        }} />
 
-          <Route exact path='/' render={(routerProps) => {
-              return <Home history={routerProps.history} />
+        <Route exact path='/' render={(routerProps) => {
+            return <Home history={routerProps.history} />
             }} />
-          </Switch>
+        </Switch>
 
+        <h3>BEGIN tutorial</h3>
 
-
-          <h3>BEGIN tutorial</h3>
-
-        <h4> Current State: {!!isLoggedIn ? (
+      <h4> Current State: {!!authenticated ? (
           'Logged IN'
         ) : (
           'Logged OUT!'
-        )} {!!isLoggedIn.toString()}</h4>
-          <button onClick={handleSubmit}>
-          {!!isLoggedIn ? (
+        )} {!!authenticated.toString()}
+
+      </h4>
+
+      <button onClick={handleSubmit}>
+        {!!authenticated ? (
             'Logout'
           ) : (
             'Login!'
           )}
-        </button>
+      </button>
 
-          <h3>END TUTORIAL</h3>
-        </div>
-      );
-    }
+      <h3>END TUTORIAL</h3>
+    </div>
+  );
+}
 
-    export default App;
+export default App;
